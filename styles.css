@@ -1,0 +1,34 @@
+#canvas {
+    height: 100%;
+    width: 100%;
+}
+
+#video {
+    display:none;
+}
+
+html, body{
+    width: 100%; 
+    height: 100%; 
+    padding: 0; 
+    margin: 0;
+}
+div{
+    position: absolute;
+    padding: 1em;
+    border: 1px solid #000;
+    opacity: 0.5;
+}
+
+#nw{background: #f09; top: 0; left: 0; right: 50%; bottom: 50%}
+#ne{background: #f90; top: 0; left: 50%; right: 0; bottom: 50%}
+#sw{background: #009; top: 50%; left: 0; right: 50%; bottom: 0}
+#se{background: #090; top: 50%; left: 50%; right: 0; bottom: 0}
+
+#startButton {
+    z-index: 20;
+}
+
+#stopButton {
+    z-index: 20;
+}

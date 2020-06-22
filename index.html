@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Hand Tracking</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css "> 
+      
+
+    <body>
+
+        <video  id='video' autoplay='autoplay' ></video>
+        <canvas id='canvas'></canvas>
+
+        <div class='box' id="nw"></div>
+        <div class='box' id="ne"></div>
+        <div class='box' id="sw"></div>
+        <div class='box' id="se"></div> 
+        <button id='startButton'>START/STOP CAMERA</button>
+        
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.0.0-beta.12/fabric.min.js"></script>        
+        <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
