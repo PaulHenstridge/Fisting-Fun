@@ -1,11 +1,12 @@
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
+
 const startButton = document.getElementById('startButton');
 
-const boxes = document.querySelectorAll('.box');
 let model = null;
 let isVideo =false;
+let soundPlaying = false;
 
 canvas.width=window.innerWidth; 
 canvas.height=window.innerHeight;
@@ -72,33 +73,56 @@ handTrack.load(modelParams).then(lmodel => {
     model = lmodel;
 });
 
+
+
+
+function soundPicker(preds) {
+    if (preds[0]){
+    //NW
+        if (preds[0].bbox[0]< canvas.width/2 && preds[0].bbox[1] < canvas.height/2){
+            console.log("NORTH WEST");              
+            playSound(sound1);
+        };
+        //NE
+        if (preds[0].bbox[0] > canvas.width/2 && preds[0].bbox[1] < canvas.height/2){
+            console.log("NORTH EAST!");
+            playSound(sound2);
+        };
+            //sw
+        if (preds[0].bbox[0]< canvas.width/2 && preds[0].bbox[1] > canvas.height/2){
+            console.log("South West")
+            playSound(sound3);
+        };
+                //SE
+        if (preds[0].bbox[0]> canvas.width/2 && preds[0].bbox[1] > canvas.height/2){
+            console.log("South East")
+            playSound(sound4);
+        };       
+    }
+        
+    };
+
+
+//debounce function
+
+function playSound (sound) {
+        sound.play();
+        soundPlaying = true;
+        setTimeout(() => soundPlaying = false, 2000);
+     
+}
+
+
+
 function runDetection() {
     model.detect(video).then(predictions => {
         console.log("Predictions: ", predictions);
         model.renderPredictions(predictions, canvas, context, video);
 
-        if (predictions[0]){
-            //NW
-            if (predictions[0].bbox[0]< window.innerWidth/2 && predictions[0].bbox[1] < window.innerHeight/2){
-                console.log("North West");              
-                sound1.play();
-            };
-            //NE
-            if (predictions[0].bbox[0] > window.innerWidth/2 && predictions[0].bbox[1] < window.innerHeight/2){
-                console.log("NORTH EAST!");
-                sound2.play();
-            };
-                //sw
-            if (predictions[0].bbox[0]< window.innerWidth/2 && predictions[0].bbox[1] > window.innerHeight/2){
-                console.log("SOUth WEST")
-                sound3.play();
-            };
-                    //SE
-            if (predictions[0].bbox[0]> window.innerHWidth/2 && predictions[0].bbox[1] > window.innerHeight/2){
-                console.log("South East")
-                 sound4.play();
-            };
-        };
+        if(!soundPlaying){
+            soundPicker(predictions);
+        }
+            
         if (isVideo) {
             requestAnimationFrame(runDetection);
         }
