@@ -22,7 +22,7 @@ const modelParams = {
     flipHorizontal: true,
     maxNumBoxes: 1,       
     iouThreshold: 0.5,      
-    scoreThreshold: 0.6,    
+    scoreThreshold: 0.7,    
 };
 
 const sound1 = new Howl({
